@@ -1,12 +1,11 @@
 // required if we want to return jsx
 // components that are really just functions that return jsx
 import { Button, Container, Menu } from 'semantic-ui-react';
+import { useStore } from '../stores/store';
 
-interface Props {
-  openForm: () => void;
-}
+export default function NaBar() {
+  const { activityStore } = useStore();
 
-export default function NaBar({openForm}: Props) {
   return (
     <Menu inverted fixed='top'>
       <Container>
@@ -20,7 +19,7 @@ export default function NaBar({openForm}: Props) {
         </Menu.Item>
         <Menu.Item name='Activities' />
         <Menu.Item>
-          <Button onClick={openForm} positive content='Create Activity' />
+          <Button onClick={() => activityStore.openForm()} positive content='Create Activity' />
         </Menu.Item>
       </Container>
     </Menu>
